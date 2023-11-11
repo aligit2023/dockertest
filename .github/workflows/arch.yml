@@ -1,0 +1,29 @@
+name: arch
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Build
+      run: docker-compose up --build -d c3c_arch
+
+    - name: Extract binary
+      run: docker cp c3c_arch:/opt/c3c_binary_arch.tar.gz ~/c3c_binary_arch.tar.gz
+
+    - name: Archive binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: c3c_binary_arch.tar.gz
+        path: ~/c3c_binary_arch.tar.gz

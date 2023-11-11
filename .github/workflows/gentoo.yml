@@ -1,0 +1,29 @@
+name: gentoo
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Build
+      run: docker-compose up --build -d c3c_gentoo
+
+    - name: Extract binary
+      run: docker cp c3c_gentoo:/opt/c3c_binary_gentoo.tar.gz ~/c3c_binary_gentoo.tar.gz
+
+    - name: Archive binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: c3c_binary_gentoo.tar.gz
+        path: ~/c3c_binary_gentoo.tar.gz
