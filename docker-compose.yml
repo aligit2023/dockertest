@@ -1,0 +1,30 @@
+version: "3"
+services:
+  c3c_alpine:
+    image: c3c_alpine
+    container_name: c3c_alpine
+    build: ./alpine
+  c3c_arch:
+    image: c3c_arch
+    container_name: c3c_arch
+    build: ./arch
+  c3c_gentoo:
+    image: c3c_gentoo
+    container_name: c3c_gentoo
+    build: ./gentoo
+  c3c_fedora:
+    image: c3c_fedora
+    container_name: c3c_fedora
+    build: ./fedora
+  c3c_debian:
+    image: c3c_debian
+    container_name: c3c_debian
+    build: ./debian
+  c3c_ubuntu:
+    image: c3c_ubuntu
+    container_name: c3c_ubuntu
+    build: ./ubuntu
+  c3c_opensuse:
+    image: c3c_opensuse
+    container_name: c3c_opensuse
+    build: ./opensuse
